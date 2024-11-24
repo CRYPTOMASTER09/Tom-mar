@@ -24,14 +24,13 @@ def _banner():
 
     # Print the decoded banner
     print(Fore.WHITE + Style.BRIGHT + decoded_banner + Style.RESET_ALL)
-    print(Fore.YELLOW + f" CREATED BY : DR ABDUL MATIN KARIMI: ⨭ {Fore.GREEN}https://t.me/doctor_amk")
-    print(Fore.WHITE + f" DOWNLOAD LATEST HACKS HERE ➤ {Fore.GREEN}https://t.me/optimalgrowYT")
-    print(Fore.RED  + f" LEARN HACKING HERE ➤ {Fore.GREEN}https://www.youtube.com/@optimalgrowYT/videos")
+    print(Fore.YELLOW + f" CREATED BY : CRYPTO MASTER : ⨭ {Fore.GREEN}https://t.me/Mrakmal786")
+    print(Fore.WHITE + f" DOWNLOAD LATEST HACKS HERE ➤ {Fore.GREEN}https://t.me/airdropconfirm97")
+    print(Fore.RED  + f" LEARN HACKING HERE ➤ {Fore.GREEN}https://www.youtube.com/@cryptomaster09/videos")
     print(Fore.YELLOW + f" PASTE YOUR (Query ID) INTO QUERY_ID.TXT FILE AND PRESS START ")
     print(Fore.GREEN + f"      ▁ ▂ ▄ ▅ ▆ ▇ █ 丅𝐎𝐌𝐀𝐑𝐊ⓔ丅 𝐕𝐢𝐏 𝐇𝐀𝐂𝐊 █ ▇ ▆ ▅ ▄ ▂ ▁ ")
     log_line()
 
-def log_line():
     print(Fore.GREEN + "=☠=" * 22 + Style.RESET_ALL)
 
 # Initialize colorama
