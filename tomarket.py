@@ -56,7 +56,7 @@ class Tomarket:
         except (Exception) as e:
             return print_timestamp(f"{Fore.RED + Style.BRIGHT}[ {e} ]{Style.RESET_ALL}")
 
-    def user_balance(self, token, random_number, auto_convert):
+    def user_balance(self, token, random_number):
         url = 'https://api-web.tomarket.ai/tomarket-game/v1/user/balance'
         try:
             self.headers.update({
@@ -65,17 +65,12 @@ class Tomarket:
             response = requests.post(url=url, headers=self.headers)
             data = self.response_data(response)
             if data is not None:
-                balances = data['data']['available_balance']
                 print_timestamp(
-                    f"{Fore.YELLOW + Style.BRIGHT}[ Available Balance {balances} ]{Style.RESET_ALL}"
+                    f"{Fore.YELLOW + Style.BRIGHT}[ Available Balance {data['data']['available_balance']} ]{Style.RESET_ALL}"
                     f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
                     f"{Fore.BLUE + Style.BRIGHT}[ Play Passes {data['data']['play_passes']} ]{Style.RESET_ALL}"
                 )
-                if auto_convert == 'y':
-                    if balances > 20000:
-                        sleep(2)
-                        self.convert_star(token)
-                        
+        
                 while data['data']['play_passes'] > 0:
                     sleep(2)
                     point = 600
@@ -107,11 +102,9 @@ class Tomarket:
                     total_time = end_time - start_time
                     total_seconds = total_time.total_seconds()
                     print_timestamp(f"{Fore.GREEN + Style.BRIGHT}[ Game Started Please Wait {int(total_seconds)} Seconds ]{Style.RESET_ALL}")
-                    datas = data.get('data',{})
-                    stars = datas.get('stars',0)
                     slp = random.randint(30, 35)
                     sleep(slp)
-                    self.claim_game(token=token, points=point, stars=stars)
+                    self.claim_game(token=token, points=point)
                 elif data['status'] == 500:
                     print_timestamp(f"{Fore.YELLOW + Style.BRIGHT}[ No Chance To Play Game ]{Style.RESET_ALL}")
                 else:
@@ -121,28 +114,7 @@ class Tomarket:
         except (Exception) as e:
             return print_timestamp(f"{Fore.RED + Style.BRIGHT}[ {e} ]{Style.RESET_ALL}")
 
-    def convert_star(self, token):
-        url = 'https://api-web.tomarket.ai/tomarket-game/v1/token/tomatoToStar'
-        try:
-            self.headers.update({
-                'Authorization': token
-            })
-            response = requests.post(url=url, headers=self.headers)
-            data = self.response_data(response)
-            if data is not None:
-                if data['status'] == 0:
-                    datas = data.get('data')
-                    success = datas.get('success')
-                    if success:
-                        print_timestamp("Convert To Star Done")
-                else:
-                    print_timestamp(f"{Fore.RED + Style.BRIGHT}[ {data['message']} ]{Style.RESET_ALL}")
-            else:
-                print_timestamp('Data play game is None')
-        except (Exception) as e:
-            return print_timestamp(f"{Fore.RED + Style.BRIGHT}[ {e} ]{Style.RESET_ALL}")
-
-    def claim_game(self, token: str, points: int, stars: int):
+    def claim_game(self, token: str, points: int):
         url = 'https://api-web.tomarket.ai/tomarket-game/v1/game/claim'
         try:
             self.headers.update({
@@ -150,14 +122,13 @@ class Tomarket:
             })
             payload = {
                 'game_id': '59bcd12e-04e2-404c-a172-311a0084587d',
-                'points': points,
-                'stars': stars
+                'points': points
             }
             response = requests.post(url=url, headers=self.headers, json=payload)
             data = self.response_data(response)
             if data is not None:
                 if data['status'] == 0:
-                    print_timestamp(f"{Fore.GREEN + Style.BRIGHT}[ Game Claimed {data['data']['points']} Tomato & {data['data']['stars']} Stars ]")
+                    print_timestamp(f"{Fore.GREEN + Style.BRIGHT}[ Game Claimed {data['data']['points']} ]")
                 elif data['status'] == 500:
                     print_timestamp(f"{Fore.YELLOW + Style.BRIGHT}[ Game Not Start ]")
                     self.play_game(token=token, point=points)
