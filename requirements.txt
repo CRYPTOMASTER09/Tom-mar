@@ -1,8 +1,0 @@
-colorama
-fake-useragent
-pytz
-Requests
-curl_cffi
-progressbar2
-cloudscraper
-loguru
