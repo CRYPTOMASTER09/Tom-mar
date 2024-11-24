@@ -11,7 +11,7 @@ def _banner():
 
     # Print the decoded banner
     print(Fore.WHITE + Style.BRIGHT + decoded_banner + Style.RESET_ALL)
-    print(Fore.YELLOW + f" CREATED BY : CRYPTO MASTER : ⨭ {Fore.GREEN}https://t.me/Mrakmal786)
+    print(Fore.YELLOW + f" CREATED BY : CRYPTO MASTER : ⨭ {Fore.GREEN}https://t.me/Mrakmal786")
     print(Fore.WHITE + f" DOWNLOAD LATEST HACKS HERE ➤ {Fore.GREEN}https://t.me/airdropconfirm97")
     print(Fore.RED  + f" LEARN HACKING HERE ➤ {Fore.GREEN}https://www.youtube.com/@cryptomaster09/videos")
     print(Fore.YELLOW + f" PASTE YOUR (Query ID) INTO QUERY_ID.TXT FILE AND PRESS START ")
